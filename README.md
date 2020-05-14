@@ -8,3 +8,4 @@
 
 1. 下载下来改项目，使用前端开发工具如VSCode打开，可以直接打开page下面的页面，里面有一些样例
 2. mapFile下面放的是离线地图瓦片
+3. 离线地图服务器（https://gitee.com/xiaoZ1712/ldmap-download.git）
