@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>路径轨迹回放</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- leaflet。js的基础依赖 -->
+		<link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
+		<script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
+		<script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
+		<script type="text/javascript" src="lmjs/setMapStytle.js"></script>
+		<script type="text/javascript" src="lmjs/mapStyle.js"></script>
+		<script type="text/javascript" src="lmjs/initMap.js"></script>
+
+		<!-- 轨迹回放的自定义插件（依赖于leaflet。js） -->
+		<script type="text/javascript" src="lmjs/markerTrack.js"></script>
+		<script type="text/javascript" src="lmjs/em.geometryutil.js"></script>
+	</head>
+
+	<style>
+	    body {
+	        margin: 0;
+	        padding: 0;
+	    }
+	
+	    #map {
+	        position: absolute;
+	        top: 0;
+	        bottom: 0;
+	        width: 100%;
+	    }
+	</style>
+
+	<body>
+
+		<div id='map'></div>
+
+
+		<script type="text/javascript">
+			
+			/* 这块代码是引入地图的,根据自己的项目来就好(我的项目里面是离线地图) */
+			// --start引入地图--
+			var map = L.initMap('map',{ // 以下参数均为可选项
+                center: [34.694, 113.587],// 中心点
+                renderer: L.svg(),
+                zoom: 6,  // 初始化放大级别
+                zoomControl: false, // + -号放大缩小
+                attributionControl: false, // 右下角leaflet.js图标
+                maxZoom: 18,// 显示的最大层级(最高18)
+                minZoom: 3 // 显示的小层级
+            });
+			// --end引入地图--
+			
+
+		
+			/**
+			 * 开始轨迹回放的代码
+			 */
+			// 运动的轨迹
+			var polyline = L.polyline([[34.694,113.587],[38.694,113.587],[37.694,115.587]],{color: 'red'}).addTo(map);
+			
+			// 轨迹运动的图标
+			var m = L.marker([34.694,113.587],{icon:L.icon({
+			        iconUrl:'img/run.png',
+			        iconAnchor: [25, 15],
+			    })}).addTo(map);
+			
+			//添加一条线段也记录已经路过的点
+			var passed=L.polyline([[]],{color:'yellow'}).addTo(map);
+			m.on('update_position',function (e) {
+			    //每次坐标更新。然后也更新路径
+			    passed.setLatLngs(e.path);
+			});
+			
+			
+			// 开始运动
+			m.moveAlong(polyline,300000);
+			
+		</script>
+	</body>
+</html>

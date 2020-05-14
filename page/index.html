@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
+    <script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
+    <script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
+    <script type="text/javascript" src="lmjs/setMapStytle.js"></script>
+    <script type="text/javascript" src="lmjs/initMap.js"></script>
+    <!-- 领图基础的样式与js文件	-->
+    <!--    <script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/lmBase.js"></script>-->
+    <!--    <script type="text/javascript" src="http://192.168.0.146:9090/cmjs/jsLib/emBase.js"></script>-->
+    <script type="text/javascript" src="lmjs/mapStyle.js"></script>
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body,
+        #map {
+            height: 100%;
+            color: orangered;
+            /* background-color: rgba(23, 27, 241, 0.1); */
+        }
+
+        /*.leaflet-zoom-animated img {*/
+        /*     -webkit-filter: invert(50%) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(10%) !important;*/
+        /*     -ms-filter: invert(1) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(10%) !important;*/
+        /*     -moz-filter: invert(1) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(10%) !important;*/
+        /*     filter: invert(1) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(1%) !important;*/
+        /* } */
+
+    </style>
+</head>
+
+<body>
+<!--  style="background-color: #191970;" -->
+<div id='map'></div>
+</body>
+<script type="text/javascript">
+
+    // 初始化离线地图,其中第一个参数是离线地图所在div,第二个参数是离线地图的一些配置信息
+    // var map = L.initMap('map',{
+    // 	center: [34.694, 113.587],// 中心点
+    // 	renderer: L.svg(),
+    // 	zoom: 6,  // 初始化放大级别
+    // 	zoomControl: false, // + -号放大缩小
+    // 	attributionControl: false, // 右下角leaflet.js图标
+    // 	maxZoom: 18,// 显示的最大层级(最高18)
+    // 	minZoom: 3 // 显示的小层级
+    // });
+    var map = L.initMap('map', {zoom: 9, mapStyle: mapStyle.blue});
+
+    L.marker([34.694, 113.587], {title: "hahah", riseOnHover: true}).addTo(map)
+        .bindPopup('Hello world ~')
+        .openPopup();
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>绘制多边形</title>
+    <link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
+    <script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
+    <script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
+    <script type="text/javascript" src="lmjs/setMapStytle.js"></script>
+    <script type="text/javascript" src="lmjs/mapStyle.js"></script>
+    <script type="text/javascript" src="lmjs/initMap.js"></script>
+    <script type="text/javascript" src="lmjs/DrawTool.js"></script>
+    <script type="text/javascript" src="lmjs/GeoUtil.js"></script>
+    <!-- 基础的样式与js文件	-->
+    <!--    <script type="text/javascript" src="http://192.168.0.139:9090/lmjs/jsLib/emBase.js"></script>-->
+    <!--	<script type="text/javascript" src="http://192.168.0.139:9090/lmjs/jsLib/emBase.js"></script>-->
+
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id='map'></div>
+</body>
+<script type="text/javascript">
+    // 加载的地图
+    var map = L.initMap('map', { // 以下参数均为可选项
+        center: [34.694, 113.587],// 中心点
+        renderer: L.svg(),
+        zoom: 6,  // 初始化放大级别
+        zoomControl: false, // + -号放大缩小
+        attributionControl: false, // 右下角leaflet.js图标
+        maxZoom: 18,// 显示的最大层级(最高18)
+        minZoom: 3 ,// 显示的小层级
+        mapStyle: mapStyle.blue
+    });
+
+    var p = L.polygon(JSON.parse('[{"lat":34.036646789424346,"lng":108.17138671875001},{"lat":32.308926882464036,"lng":107.62207031250001},{"lat":31.936960790667356,"lng":110.12695312500001},{"lat":32.90090539798238,"lng":110.06103515625001}]'));
+    p.addTo(map);
+    p.bindPopup("haha");
+    p.bindTooltip("my tooltip text").openTooltip();
+
+
+    // 以下代码是绘制多边形的操作
+    // 初始化画布,给定地图容器,第一个参数是地图对象，第二个参数是绘制时图标的样式，第二个参数可以不写
+    DrawTool.init(map, 'img/move.png');
+
+    // 通过重写双击方法来实现双击执行一系列操作,通常是获取多边形的点集合，以做其他操作
+    DrawTool.onDoubleClick = function (e) {
+        // 打印绘制多边形的点集合
+        var marker = L.marker([34.694, 113.587]).bindPopup('Hello world ~');
+        marker.addTo(map);
+        // 多边形边界
+        console.log(JSON.stringify(DrawTool.polygon.getLatLngs()[0]))
+        alert('我就是这么强大！啦啦啦啦啦！！！点是否在多边形内 >> ' + GeoUtil.isPointInPolygon(marker.getLatLng(), DrawTool.polygon));
+    }
+
+
+</script>
+
+</html>

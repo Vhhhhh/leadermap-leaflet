@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>测距</title>
+	<link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
+	<script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
+	<script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
+	<script type="text/javascript" src="lmjs/setMapStytle.js"></script>
+	<script type="text/javascript" src="lmjs/mapStyle.js"></script>
+	<script type="text/javascript" src="lmjs/initMap.js"></script>
+	<script type="text/javascript" src="lmjs/LineDistance.js"></script>
+<!--	<script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/lmBase.js"></script>-->
+
+	<style type="text/css">
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		html,
+		body,
+		#map {
+			height: 100%;
+			/* background-color: rgba(23, 27, 241, 0.1); */
+		}
+	</style>
+</head>
+
+<body>
+	<div id='map'></div>
+</body>
+<script type="text/javascript">
+	var map = L.initMap('map',{ // 以下参数均为可选项
+		center: [34.694, 113.587],// 中心点
+		renderer: L.svg(),
+		zoom: 6,  // 初始化放大级别
+		zoomControl: false, // + -号放大缩小
+		attributionControl: false, // 右下角leaflet.js图标
+		maxZoom: 18,// 显示的最大层级(最高18)
+		minZoom: 3 ,// 显示的小层级
+		mapStyle: mapStyle.blue
+	});
+	//将图层加载到地图上，并设置最大的聚焦还有map样式
+	LinDistance.init(map);
+	var startPoint = L.latLng([34.825190000000000,113.710539000000000]);
+	var endPoint = L.latLng([34.819576925233870,113.707466125488300]);
+	console.log(startPoint.distanceTo(endPoint)+"米");
+</script>
+
+</html>
