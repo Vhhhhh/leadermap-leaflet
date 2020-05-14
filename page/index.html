@@ -9,10 +9,8 @@
     <script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
     <script type="text/javascript" src="lmjs/setMapStytle.js"></script>
     <script type="text/javascript" src="lmjs/initMap.js"></script>
-    <!-- 领图基础的样式与js文件	-->
+    <!--	下面这个是依赖服务器上的js-->
     <!--    <script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/lmBase.js"></script>-->
-    <!--    <script type="text/javascript" src="http://192.168.0.146:9090/cmjs/jsLib/emBase.js"></script>-->
-    <script type="text/javascript" src="lmjs/mapStyle.js"></script>
     <style type="text/css">
         body {
             padding: 0;
@@ -26,13 +24,6 @@
             color: orangered;
             /* background-color: rgba(23, 27, 241, 0.1); */
         }
-
-        /*.leaflet-zoom-animated img {*/
-        /*     -webkit-filter: invert(50%) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(10%) !important;*/
-        /*     -ms-filter: invert(1) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(10%) !important;*/
-        /*     -moz-filter: invert(1) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(10%) !important;*/
-        /*     filter: invert(1) grayscale(0) saturate(0.5) brightness(1.6) opacity(1) hue-rotate(334deg) sepia(1%) !important;*/
-        /* } */
 
     </style>
 </head>
@@ -53,7 +44,7 @@
     // 	maxZoom: 18,// 显示的最大层级(最高18)
     // 	minZoom: 3 // 显示的小层级
     // });
-    var map = L.initMap('map', {zoom: 9, mapStyle: mapStyle.blue});
+    var map = L.initMap('map', {zoom: 9});
 
     L.marker([34.694, 113.587], {title: "hahah", riseOnHover: true}).addTo(map)
         .bindPopup('Hello world ~')

@@ -3,15 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <title>测试修改主题颜色</title>
+    <title>修改主题颜色</title>
     <!-- leaflet。js的基础依赖 -->
     <link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
     <script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
     <script type="text/javascript" src="lmjs/initMap.js"></script>
     <script type="text/javascript" src="lmjs/setMapStytle.js"></script>
-    <!--    <script type="text/javascript" src="http://192.168.0.146:9090/cmjs/jsLib/emBase.js"></script>-->
-    <!--    <script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/lmBase.js"></script>-->
     <script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
+    <!--    样式js文件-->
+    <script type="text/javascript" src="lmjs/mapStyle.js"></script>
+    <!--	下面这个是依赖服务器上的js-->
+    <!--    <script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/lmBase.js"></script>-->
     <style type="text/css">
         body {
             padding: 0;
@@ -39,53 +41,35 @@
 </body>
 <script type="text/javascript">
 
-    var map = L.map("map", {
-        center: [34.694, 113.587],
-        renderer: L.svg(),
-        zoom: 9,
-        zoomControl: false, // + -号放大缩小
-        attributionControl: false // 右下角leaflet.js图标
-    });
-    // http://192.168.0.105:9090/img/{z}/{x}/{y}.png // 这个是瓦片地图的地址
-    L.tileLayer.colorizr("mapFile/{z}/{x}/{y}.png", {
-        maxZoom: 18,
-        minZoom: 3,
-        colorize: function (pixel) {
-            // 科技紫
-            pixel.r -= 26;
-            pixel.g -= 34;
-            pixel.b -= 111;
-            // pixel.r += 13;
-            // pixel.g += 17;
-            // pixel.b += 90;
-            return pixel;
-        }
-    }).addTo(map);
 
-    // if (rgbSameAs(pixel,[252,249,242])){ // 陆地
-    //     setRgbAs(pixel,[26,34,111])
-    // }
-    // if (rgbSameAs(pixel,[236,235,228])){ // 楼房
-    //     setRgbAs(pixel,[40,73,150])
-    // }
-    // if (rgbSameAs(pixel,[243,242,236])){ // 边界
-    //     setRgbAs(pixel,[63,118,188])
-    // }
-    // if (rgbSameAs(pixel,[239,237,232])){ // 院落
-    //     setRgbAs(pixel,[35,78,151])
-    // }
-    // if (rgbSameAs(pixel,[255,255,255])){ // 街道
-    //     setRgbAs(pixel,[27,53,130])
-    // }
-    // if (rgbSameAs(pixel,[238,234,228])){ // 街道边界
-    //     setRgbAs(pixel,[66,106,181])
-    // }
-    // if (rgbSameAs(pixel,[211,211,211])){ // 院落内的小路
-    //     setRgbAs(pixel,[28,66,141])
-    // }
-    // if (rgbSameAs(pixel,[226,221,211])){ // 街道边框
-    //     setRgbAs(pixel,[62,99,175])
-    // }
+
+    var map = L.initMap('map', {zoom: 9,mapStyle: mapStyle.blue});
+
+
+    /*
+    可以通过以下方式实现自定义样式
+     */
+    // var map = L.map("map", {
+    //     center: [34.694, 113.587],
+    //     renderer: L.svg(),
+    //     zoom: 9,
+    //     zoomControl: false, // + -号放大缩小
+    //     attributionControl: false // 右下角leaflet.js图标
+    // });
+    // L.tileLayer.colorizr("mapFile/{z}/{x}/{y}.png", {
+    //     maxZoom: 18,
+    //     minZoom: 3,
+    //     colorize: function (pixel) {
+    //         // 科技紫
+    //         pixel.r -= 26;
+    //         pixel.g -= 34;
+    //         pixel.b -= 111;
+    //         // pixel.r += 13;
+    //         // pixel.g += 17;
+    //         // pixel.b += 90;
+    //         return pixel;
+    //     }
+    // }).addTo(map);
 </script>
 
 </html>

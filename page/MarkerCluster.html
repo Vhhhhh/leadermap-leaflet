@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>点聚合</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
-        <script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
-        <script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
-        <script type="text/javascript" src="lmjs/setMapStytle.js"></script>
-        <script type="text/javascript" src="lmjs/mapStyle.js"></script>
-        <script type="text/javascript" src="lmjs/initMap.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>点聚合</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
+    <script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
+    <script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
+    <script type="text/javascript" src="lmjs/setMapStytle.js"></script>
+    <script type="text/javascript" src="lmjs/mapStyle.js"></script>
+    <script type="text/javascript" src="lmjs/initMap.js"></script>
 
-        <link rel="stylesheet" href="lmcss/screen.css" />
-        <link rel="stylesheet" href="lmcss/MarkerCluster.css" />
-        <link rel="stylesheet" href="lmcss/MarkerCluster.Default.css" />
-        <script src="lmjs/leaflet.markercluster-src.js"></script>
-        <script src="lmjs/realworld.388.js"></script>
-        <!-- 基础的样式与js文件	-->
-<!--        <script type="text/javascript" src="http://127.0.0.1:9090/lmjs/jsLib/emBase.js"></script>-->
-        <!--    点聚合的js -->
-<!--        <script type="text/javascript" src="http://127.0.0.1:9090/lmjs/jsLib/cluserJs.js"></script>-->
-    </head>
-    <body>
-        <div id="map"></div>
-        <span>Mouse over a cluster to see the bounds of its children and click a cluster to zoom to those bounds</span>
-        <script type="text/javascript">
-        /* 这块代码是引入地图的,根据自己的项目来就好(我的项目里面是离线地图) */
-			// --start引入地图--
-			var map = L.initMap('map',{ // 以下参数均为可选项
-                center: [34.694, 113.587],// 中心点
-                renderer: L.svg(),
-                zoom: 6,  // 初始化放大级别
-                zoomControl: false, // + -号放大缩小
-                attributionControl: false, // 右下角leaflet.js图标
-                maxZoom: 18,// 显示的最大层级(最高18)
-                minZoom: 3 // 显示的小层级
-            });
-            //将图层加载到地图上，并设置最大的聚焦还有map样式
-            var markers = L.markerClusterGroup();
-            for (var i = 0; i < addressPoints.length; i++) {
-                var a = addressPoints[i];
-                var title = a[2];
-                var marker = L.marker(new L.LatLng(a[0], a[1]), { title: title });
-                marker.bindPopup(title);
-                markers.addLayer(marker);
-            }
-            map.addLayer(markers);
-        </script>
-    </body>
+    <link rel="stylesheet" href="lmcss/screen.css"/>
+    <link rel="stylesheet" href="lmcss/MarkerCluster.css"/>
+    <link rel="stylesheet" href="lmcss/MarkerCluster.Default.css"/>
+    <script src="lmjs/leaflet.markercluster-src.js"></script>
+    <script src="lmjs/realworld.388.js"></script>
+
+    <!--	下面这个是依赖服务器上的js-->
+<!--        <script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/lmBase.js"></script>-->
+    <!--    点聚合功能需要单独引用的js    -->
+<!--        <script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/cluser.js"></script>-->
+</head>
+<body>
+<div id="map"></div>
+<span>Mouse over a cluster to see the bounds of its children and click a cluster to zoom to those bounds</span>
+<script type="text/javascript">
+    /* 这块代码是引入地图的,根据自己的项目来就好(我的项目里面是离线地图) */
+    // --start引入地图--
+    var map = L.initMap('map', { // 以下参数均为可选项
+        center: [34.694, 113.587],// 中心点
+        renderer: L.svg(),
+        zoom: 6,  // 初始化放大级别
+        zoomControl: false, // + -号放大缩小
+        attributionControl: false, // 右下角leaflet.js图标
+        maxZoom: 18,// 显示的最大层级(最高18)
+        minZoom: 3 // 显示的小层级
+    });
+    //将图层加载到地图上，并设置最大的聚焦还有map样式
+    var markers = L.markerClusterGroup();
+    for (var i = 0; i < addressPoints.length; i++) {
+        var a = addressPoints[i];
+        var title = a[2];
+        var marker = L.marker(new L.LatLng(a[0], a[1]), {title: title});
+        marker.bindPopup(title);
+        markers.addLayer(marker);
+    }
+    map.addLayer(markers);
+</script>
+</body>
 </html>

@@ -2,65 +2,69 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>闪烁点</title>
-	<!-- 这是必须加载的基础js和css -->
-	<link rel="stylesheet" type="text/css" href="leafletJs/leafletJsleaflet.css">
-	<script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
-	<script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
-	<script type="text/javascript" src="lmjs/setMapStytle.js"></script>
-	<script type="text/javascript" src="lmjs/mapStyle.js"></script>
-	<script type="text/javascript" src="lmjs/initMap.js"></script>
-	<!-- 引入闪烁marker -->
-	<link rel="stylesheet" type="text/css" href="css/blinkmarker.css">
-	<script type="text/javascript" src="lmjs/blinkmarker.js"></script>
-	<style type="text/css">
-		body {
-			padding: 0;
-			margin: 0;
-		}
+    <meta charset="utf-8">
+    <title>闪烁点</title>
+    <!-- 这是必须加载的基础js和css -->
+    <link rel="stylesheet" type="text/css" href="leafletJs/leaflet.css">
+    <script type="text/javascript" src="leafletJs/leaflet-src.js"></script>
+    <script type="text/javascript" src="lmjs/leaflet-tilelayer-colorizr.js"></script>
+    <script type="text/javascript" src="lmjs/setMapStytle.js"></script>
+    <script type="text/javascript" src="lmjs/mapStyle.js"></script>
+    <script type="text/javascript" src="lmjs/initMap.js"></script>
+    <!-- 引入闪烁marker -->
+    <link rel="stylesheet" type="text/css" href="lmcss/blinkmarker.css">
+    <script type="text/javascript" src="lmjs/blinkmarker.js"></script>
+    <!--	下面这个是依赖服务器上的js-->
+    <!--    <script type="text/javascript" src="http://127.0.0.1:9090/js/lmJs/lmBase.js"></script>-->
 
-		html,
-		body,
-		#map {
-			height: 100%;
-		}
-	</style>
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
-	<div id='map'></div>
+<div id='map'></div>
 </body>
 <script type="text/javascript">
-	/**
-	 * 这一部分用于加载地图,我这里用的是离线地图,需要适当修改
-	 */
-	var map = L.initMap('map',{
-		center: [34.694, 113.587],// 中心点
-		renderer: L.svg(),
-		zoom: 6,  // 初始化放大级别
-		zoomControl: false, // + -号放大缩小
-		attributionControl: false, // 右下角leaflet.js图标
-		maxZoom: 18,// 显示的最大层级(最高18)
-		minZoom: 3 ,// 显示的小层级
-		mapStyle: mapStyle.blue
-	});
+    /**
+     * 这一部分用于加载地图,我这里用的是离线地图,需要适当修改
+     */
+    var map = L.initMap('map', {
+        center: [34.694, 113.587],// 中心点
+        renderer: L.svg(),
+        zoom: 6,  // 初始化放大级别
+        zoomControl: false, // + -号放大缩小
+        attributionControl: false, // 右下角leaflet.js图标
+        maxZoom: 18,// 显示的最大层级(最高18)
+        minZoom: 3,// 显示的小层级
+        mapStyle: mapStyle.blue
+    });
 
-	//以下是加载闪烁标记
-	// 支持以下属性iconSize: 主体大小(默认15,15),color:主体颜色(默认红色),diveColor: 发散颜色(red),title: 标题,level: 闪烁的粗细(2),speedTime: 发散闪烁的速度(2)
-	/**
-	 L.blinkMarker(LatLng,{iconSize: [50,50],color: 'green',diveColor: 'blue',title: "啦啦啦"})
-	 */
-	L.blinkMarker([36.694, 118.587], { 
-		iconSize: [50, 50],  // 图标大小
-		color: 'green', // 图标颜色
-		diveColor: 'blue', // 发散颜色
-		level: '3', // 发散的重度(光圈宽度)
-		speedTime: 2, // 发散的速度
-		title: "我就是这么强大" }).addTo(map);
-	L.blinkMarker([34.694, 112.587], { iconSize: [12, 12], color: 'green',speedTime: 0.5}).addTo(map);
-	L.blinkMarker([35.694, 113.587], { iconSize: [18, 18], diveColor: 'aqua' }).addTo(map);
-	L.blinkMarker([32.694, 116.587], { iconSize: [25, 25], level: '3', speedTime: 1 }).addTo(map);
+    //以下是加载闪烁标记
+    // 支持以下属性iconSize: 主体大小(默认15,15),color:主体颜色(默认红色),diveColor: 发散颜色(red),title: 标题,level: 闪烁的粗细(2),speedTime: 发散闪烁的速度(2)
+    /**
+     L.blinkMarker(LatLng,{iconSize: [50,50],color: 'green',diveColor: 'blue',title: "啦啦啦"})
+     */
+    L.blinkMarker([36.694, 118.587], {
+        iconSize: [50, 50],  // 图标大小
+        color: 'green', // 图标颜色
+        diveColor: 'blue', // 发散颜色
+        level: '3', // 发散的重度(光圈宽度)
+        speedTime: 2, // 发散的速度
+        title: "我就是这么强大"
+    }).addTo(map);
+    L.blinkMarker([34.694, 112.587], {iconSize: [12, 12], color: 'green', speedTime: 0.5}).addTo(map);
+    L.blinkMarker([35.694, 113.587], {iconSize: [18, 18], diveColor: 'aqua'}).addTo(map);
+    L.blinkMarker([32.694, 116.587], {iconSize: [25, 25], level: '3', speedTime: 1}).addTo(map);
 
 
 </script>
